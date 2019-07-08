@@ -9,8 +9,6 @@ let leftover = candies % people
 
 // 3. Create a function called greeting that returns "Hello, <name>!",
 // where <name> is the name given as an argument to the function.
-
-// doesn't work, class question, needs to be called "greeting"
 function greeting(name) {
     return `Hello, ${name}!`
 }
