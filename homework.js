@@ -168,6 +168,7 @@ function selectionSort(array){
         return array
     } else {
         let sorted = true
+        // how would you do this without index++?
         for (let index = 1; index<array.length; index++){
             if (array[index] < array[index-1]){
                 sorted = false
@@ -176,15 +177,31 @@ function selectionSort(array){
         if (sorted){
             return array
         } else {
+            // original solution
+            // let arrayCopy = array.slice(0)
+            // let sortedArray = []
+            // let nextElement = undefined
+            // for (let number of array){
+            //     nextElement = minimum(arrayCopy)
+            //     sortedArray.push(nextElement)
+            //     arrayCopy.splice(arrayCopy.indexOf(nextElement),1)
+            // }
+            // return sortedArray
+
+            // single array solution
+            // how is this done without index manipulation?
             let arrayCopy = array.slice(0)
-            let sortedArray = []
-            let nextElement = undefined
-            for (let number of array){
-                nextElement = minimum(arrayCopy)
-                sortedArray.push(nextElement)
-                arrayCopy.splice(arrayCopy.indexOf(nextElement),1)
+            let lowestRemaining = undefined
+            for (let idx = 0; idx < arrayCopy.length; idx++){
+                lowestRemaining = minimum(arrayCopy.slice(idx))
+                if (lowestRemaining !== arrayCopy[idx]){
+                    let temp = arrayCopy[idx]
+                    let lowestRemainingIndex = arrayCopy.indexOf(lowestRemaining)
+                    arrayCopy[lowestRemainingIndex] = temp
+                    arrayCopy[idx] = lowestRemaining
+                }
             }
-            return sortedArray
+            return arrayCopy
         }
     }
 }
