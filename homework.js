@@ -9,9 +9,10 @@ let leftover = candies % people
 
 // 3. Create a function called greeting that returns "Hello, <name>!",
 // where <name> is the name given as an argument to the function.
+
 // doesn't work, class question, needs to be called "greeting"
 function greeting(name) {
-  return `Hello, ${name}!`
+    return `Hello, ${name}!`
 }
 
 // 4. Create a function called isOdd that, given a number, will
@@ -168,11 +169,20 @@ function selectionSort(array){
         return array
     } else {
         let sorted = true
+        // original solution
+        // for (let index = 1; index<array.length; index++){
+        //     if (array[index] < array[index-1]){
+        //         sorted = false
+        //     }
+        // }
         // how would you do this without index++?
-        for (let index = 1; index<array.length; index++){
-            if (array[index] < array[index-1]){
+        // solved it
+        let testNumber = array[0]
+        for (let number of array){
+            if (number < testNumber){
                 sorted = false
             }
+            testNumber = number
         }
         if (sorted){
             return array
@@ -190,6 +200,7 @@ function selectionSort(array){
 
             // single array solution
             // how is this done without index manipulation?
+            // asked in class, this solution is ok
             let arrayCopy = array.slice(0)
             let lowestRemaining = undefined
             for (let idx = 0; idx < arrayCopy.length; idx++){
