@@ -163,35 +163,28 @@ function minimum(array) {
 // https://courses.cs.vt.edu/csonline/Algorithms/Lessons/SelectionSort/index.html
 // to see how. This may make more sense to you.
 
-// function selectionSort(array){
-//     if (array.length < 1) {
-//         return []
-//     } else if (array.length === 1) {
-//         return array
-//     } else {
-//         var arrayCopy = array.slice(0)
-//         let sortedArray = []
-//         let index
-//         for (let number of array){
-//             let lowestNumber = minimum(arrayCopy)
-//             sortedArray.push(lowestNumber)
-//             index = arrayCopy.findIndex(lowestNumber)
-//             arrayCopy.splice(index, 0)
-//         }
-//         if (array === sortedArray){
-//             return array
-//         } else {
-//             return sortedArray
-//         }
-//     }
-// }
-
 function selectionSort(array){
-    if (array.length < 1) {
-            return []
-        } else if (array.length === 1) {
+    if (array.length <= 1) {
+        return array
+    } else {
+        let sorted = true
+        for (let index = 1; index<array.length; index++){
+            if (array[index] < array[index-1]){
+                sorted = false
+            }
+        }
+        if (sorted){
             return array
         } else {
-            
+            let arrayCopy = array.slice(0)
+            let sortedArray = []
+            let nextElement = undefined
+            for (let number of array){
+                nextElement = minimum(arrayCopy)
+                sortedArray.push(nextElement)
+                arrayCopy.splice(arrayCopy.indexOf(nextElement),1)
+            }
+            return sortedArray
         }
+    }
 }
