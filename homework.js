@@ -199,14 +199,27 @@ function selectionSort(array){
             // single array solution
             // how is this done without index manipulation?
             // asked in class, this solution is ok
+
+            // make a copy of the array
             let arrayCopy = array.slice(0)
+
             let lowestRemaining = undefined
+
             for (let idx = 0; idx < arrayCopy.length; idx++){
                 lowestRemaining = minimum(arrayCopy.slice(idx))
+
+                // if the current index value isn't the lowest
                 if (lowestRemaining !== arrayCopy[idx]){
+                    // store the current index value
                     let temp = arrayCopy[idx]
+
+                    // find the first index of the lowest remaining value
                     let lowestRemainingIndex = arrayCopy.indexOf(lowestRemaining)
+
+                    // put the current index value there
                     arrayCopy[lowestRemainingIndex] = temp
+
+                    // and put the lowest value in the current index
                     arrayCopy[idx] = lowestRemaining
                 }
             }
